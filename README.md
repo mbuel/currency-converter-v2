@@ -1,5 +1,42 @@
 # Getting Started with AltCademy Currency Converter
 
+## Example pages
+
+1. https://www.xe.com
+2. https://www.x-rates.com/table/?from=USD&amount=1 (this seems closer to the goals of the project)
+3. API: https://exchangeratesapi.io (todo: need to sign up)
+    1. This API tracks exchange rates of 33 different currencies. They are:
+    2. 73bae01c122ba3be0c1a3d7278306dfd (KEY)
+    3. http://api.exchangeratesapi.io/v1/latest?access_key=73bae01c122ba3be0c1a3d7278306dfd&symbols=USD,AUD,CAD,PLN,MXN&format=1
+    4. AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
+    5. Get /latest?base=EUR
+    6. JSON DATA:{
+  "base":"EUR",
+  "date":"2019-05-20",
+  "rates":{
+    "AUD":1.6141,
+    "BGN":1.9558,
+    "BRL":4.5666,
+    "CAD":1.5,
+    "CHF":1.1263,
+    "CNY":7.7228,
+    "CZK":25.766,
+    "DKK":7.4681,
+    "GBP":0.8762,
+    "HKD":8.7656,
+    //... more currencies
+  }
+}
+4. let demo = () => {
+  let rate = fx(1).from("GBP").to("USD")
+  alert("£1 = $" + rate.toFixed(4))
+}
+
+fetch('https://api.exchangeratesapi.io/v1/latest?access_key=73bae01c122ba3be0c1a3d7278306dfd')
+  .then((resp) => resp.json())
+  .then((data) => fx.rates = data.rates)
+  .then(demo)
+
 ## Goals of Project
 
 1. A list/table showing exchange rates for a base currency against a list of currencies:
