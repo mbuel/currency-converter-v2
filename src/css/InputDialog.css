@@ -9,3 +9,10 @@
   background: linear-gradient(180deg, rgba(20,33,31,1) 35%, rgba(0,0,0,1) 100%); 
   color:white;
 }
+
+input {
+  background-color: black;
+  color: white;
+  transform:scale(1.2, 1.2);
+  text-align: center;
+}

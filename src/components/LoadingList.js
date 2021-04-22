@@ -5,8 +5,8 @@ function LoadingList(props) {
   const [timer, setTimer] = useState(' . ');
  
   setTimeout(() => {
-    setTimer(timer + timer);
-  }, 250);
+    setTimer(timer + ' . ');
+  }, 350);
 
   return (
     <div className="py-5 converter container-fluid">

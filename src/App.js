@@ -4,6 +4,7 @@ import CurrencyList from './components/CurrencyList';
 import InputDialog from './components/InputDialog';
 import LoadingList from './components/LoadingList';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 
@@ -16,12 +17,17 @@ function App() {
 
   const [currencyList, setCurrencyList] = useState();
 
-  useEffect(() => {
-    fetch(`${api}?from=${base}`)
-      .then((response) => response.json())
-      .then((results) => setCurrencyList(results))
-      .catch(() => console.warn('Problem retrieving currencies.'));
+  useEffect( () => {
+    const loadData = async () => {
+      let result = await axios(
+        `${api}?from=${base}`
+      );
 
+      result = JSON.parse(result.request.responseText);
+      setCurrencyList(result);
+    }
+    loadData();
+    console.log(currencyList);
   }, []);
 
   if (!currencyList) return <LoadingList />
