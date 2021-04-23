@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { hasFlag, countries } from 'country-flag-icons';
 import createCurrencyList from '../../utils/createCurrencyList';
-import getUnicodeFlagIcon from 'country-flag-icons/unicode'
-import { data } from 'jquery';
+import getFlagIconByCountryCode from '../../utils/getFlagIconByCountryCode';
 
 
 export default function CurrencySelection(props) {
@@ -20,7 +18,7 @@ export default function CurrencySelection(props) {
   if (currenciesList) {
     dataSet = currenciesList.map((el, i) => {
       return (
-          <li class="text-center"><a href="#">{getUnicodeFlagIcon(el.substring(0,2).toUpperCase())} {el}</a></li>
+          <li class="text-center"><a href="#">{getFlagIconByCountryCode(el.substring(0,2))} {el}</a></li>
       );
     });
   }

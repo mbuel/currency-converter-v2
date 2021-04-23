@@ -2,17 +2,12 @@ import React, {useState} from 'react';
 import '../css/InputDialog.css';
 
 function LoadingList(props) {
-  const [timer, setTimer] = useState(' . ');
  
-  setTimeout(() => {
-    setTimer(timer + ' . ');
-  }, 350);
-
   return (
     <div className="py-5 converter container-fluid">
       <div className="py-5 row">
         <div className="py-5 col-12 text-center">
-          <h2>Loading {timer}</h2> 
+          <h2>Loading . . . <span class="fa fa-spinner fa-spin fa-3x fa-fw"></span></h2> 
         </div>
       </div>
     </div>

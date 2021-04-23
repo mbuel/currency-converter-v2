@@ -12,10 +12,12 @@
 }
 
 input {
+  position: relative;
+  display: inline-flex;
   border-radius: 25px;
   border: 1px rgb(22, 161, 131) solid;
   background-color: black;
   color: white;
-  transform:scale(1.2, 1.3);
+  transform:scale(1.5, 1.8);
   text-align: center;
 }

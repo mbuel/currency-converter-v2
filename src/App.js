@@ -35,7 +35,7 @@ function App() {
     <div className="App">
       <Header application={applicationName} links={'list-object to be populated'} />
       <InputDialog currencyList={currencyList} />
-      <CurrencyList conversionRate={0.84} currencySelected={'USD'} />
+      {/* <CurrencyList conversionRate={0.84} currencySelected={'USD'} /> */}
     </div>
   );
 }
