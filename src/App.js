@@ -2,7 +2,7 @@ import './css/App.css';
 import Header from './components/Header';
 import CurrencyList from './components/CurrencyList';
 import InputDialog from './components/InputDialog';
-import LoadingList from './components/LoadingList';
+import LoadingInput from './components/LoadingInput';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -30,7 +30,7 @@ function App() {
     console.log(currencyList);
   }, []);
 
-  if (!currencyList) return <LoadingList />
+  if (!currencyList) return <LoadingInput />
   return (
     <div className="App">
       <Header application={applicationName} links={'list-object to be populated'} />

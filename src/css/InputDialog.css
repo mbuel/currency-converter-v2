@@ -5,14 +5,17 @@
   height: 450px;
   width: 90%;
   border-radius: 25px;
+  border: 1px rgb(22, 161, 131) solid;
   background: rgb(20,33,31);
   background: linear-gradient(180deg, rgba(20,33,31,1) 35%, rgba(0,0,0,1) 100%); 
   color:white;
 }
 
 input {
+  border-radius: 25px;
+  border: 1px rgb(22, 161, 131) solid;
   background-color: black;
   color: white;
-  transform:scale(1.2, 1.2);
+  transform:scale(1.2, 1.3);
   text-align: center;
 }

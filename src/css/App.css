@@ -1,6 +1,11 @@
 body {
   background-color: black !important;
 }
+a {
+  color: white;
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
 }

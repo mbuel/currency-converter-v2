@@ -1,0 +1,13 @@
+#dropper {
+  position: relative;
+  left: -20px;
+}
+
+.dropdown-menu {
+  position: relative;
+  left: -40px;
+  top: 150px;
+  background-color: black;
+  color: white;
+}
+
