@@ -46,28 +46,31 @@ useEffect(() => {
   setRate(_.ceil((fx(1).from(baseCurrency).to(toCurrency)), 4));
   
   // console.log(rate.toFixed(2));
-  let output = filterNumInput(currencyInput) * rate;
+  let output = filterNum(currencyInput) * rate;
   setOutput(output);
-}, [currencyInput]);
+}, []);
 
   const setOutput = (num) => {
     setCurrencyOutput(
       toFormatter.format(
-        _.ceil(filterNumInput(num),2))
+        _.ceil(filterNum(num),2))
     );
   }
   const setInput = (num) => {
     setCurrencyInput(
       baseFormatter.format(
-        _.ceil(filterNumInput(num),2))
+        _.ceil(filterNum(num),2))
     );
 
   }
 
-  const filterNumInput = (num) => {
+  const filterNum = (num) => {
     console.warn(num, typeof num);
+
     num = typeof num === 'string' && num.indexOf('$') >= 0 ? num.split('$')[1] : num;
-    num = isNaN(num) ? currencyInput : num;
+    console.warn(num, typeof num);
+    num = isNaN(num) ? currencyInput.split('$')[1] : num;
+    console.warn(num, typeof num);
     console.warn(num);
 
     return num;
