@@ -35,6 +35,7 @@ function App() {
     <div className="App">
       <Header application={applicationName} links={'list-object to be populated'} />
       <InputDialog currencyList={currencyList} />
+      {/* TODO: move this to a sub app that controls the currencies and passes them on to appropriate sub-components */}
       {/* <CurrencyList conversionRate={0.84} currencySelected={'USD'} /> */}
     </div>
   );

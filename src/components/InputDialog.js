@@ -52,7 +52,7 @@ useEffect(() => {
 
   const setOutput = (num) => {
     setCurrencyOutput(
-      baseFormatter.format(
+      toFormatter.format(
         _.ceil(filterNumInput(num),2))
     );
   }

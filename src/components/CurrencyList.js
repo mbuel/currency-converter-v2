@@ -6,6 +6,7 @@ import '../css/CurrencyList.css';
 function CurrencyList(props) {
   const { conversionRate, currencySelected } = props;
   
+  // TODO: map table input and changed base currency along with input amount to calculate how much you would have in each currency in the table.
   return (
     <React.Fragment>
       <div className='container-fluid currency-list'>
