@@ -1,13 +1,12 @@
 import '../../css/InputDropDown.css';
 import React from 'react';
 import CurrencySelection from './CurrencySelection';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {fas} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import FontAwesomeIcon from '../../utils/getFontIcon';
+
 
 export default function InputDropDown(props) {
   const {currencyList, id, value} = props;
-  library.add(fas);
+  
   const handler = (e) => {
     console.log(e);
   }

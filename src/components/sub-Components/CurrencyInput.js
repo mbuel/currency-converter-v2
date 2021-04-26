@@ -7,7 +7,14 @@ export default function CurrencyInput(props) {
   return (
     <React.Fragment>
       {/* TODO: need state variable to track value and propagate changes to rest of page */}
-        <input onChange={handler} class="span2" size="16" type="text" value={value} />
+        <input 
+          type="text"
+          placeholder="0.00" 
+          onChange={handler} 
+          class="span2" 
+          size="16" 
+          value={value} 
+        />
     </React.Fragment>
   )
 
