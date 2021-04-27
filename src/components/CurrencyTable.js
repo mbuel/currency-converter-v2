@@ -9,9 +9,11 @@ function CurrencyTable(props) {
   const { currencyList, currencyInput } = props;
   
   return (
-      <div className='currency-table container-fluid currency-list'>
+      <div className='currency-table container-fluid'>
         <CurrencyTableHeader />
-        <CurrencyTableRow currencyList={currencyList} currencyInput={currencyInput} />
+        <div className="currency-list">
+          <CurrencyTableRow currencyList={currencyList} currencyInput={currencyInput} />
+        </div>
       </div>
   )
 }

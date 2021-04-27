@@ -1,16 +1,41 @@
-.currency-list >.row:nth-child(odd) {
-  background-color: rgb(22, 161, 131) solid;
+.currency-data:nth-child(odd) {
+  background-color: rgb(15, 107, 87);
 }
 
 .currency-list {
   background: rgb(20,33,31);
+  width:100%;
   overflow-y: auto;
+  overflow-x: hidden;
+  height: 280px;
   color:white;
+  scrollbar-color: rgb(22, 161, 131) rgb(6, 10, 10) !important;
+  scrollbar-width: 10px !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 190px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20,33,31,1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(22, 161, 131); 
+}thin
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(30, 214, 174); 
 }
 
 .heading {
   font-size: 1.3em;
-  background: linear-gradient(90deg, rgba(20,33,31,1) 35%, rgba(0,0,0,1) 100%); 
+  border-radius: 25px 25px 0px 0px;
+  background: linear-gradient(180deg, rgba(20,33,31,1) 35%, rgba(0,0,0,1) 100%); 
   color: white;
 }
 
