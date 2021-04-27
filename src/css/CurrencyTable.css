@@ -1,0 +1,26 @@
+.currency-list >.row:nth-child(odd) {
+  background-color: rgb(22, 161, 131) solid;
+}
+
+.currency-list {
+  background: rgb(20,33,31);
+  overflow-y: auto;
+  color:white;
+}
+
+.heading {
+  font-size: 1.3em;
+  background: linear-gradient(90deg, rgba(20,33,31,1) 35%, rgba(0,0,0,1) 100%); 
+  color: white;
+}
+
+.currency-table {
+  padding: 15px;
+  position: fixed;
+  margin-left: 100px;
+  border-radius: 25px;
+  border: 1px rgb(22, 161, 131) solid;
+  bottom: 50px;
+  height: 350px;
+  width: 90%;
+}

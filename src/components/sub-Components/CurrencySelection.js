@@ -6,7 +6,7 @@ import getFlagIconByCountryCode from '../../utils/getFlagIconByCountryCode';
 export default function CurrencySelection(props) {
   const {currencyList} = props;
   const [currenciesList, setCurrenciesList] = useState([]);
-
+  
   let dataSet = <p>empty array</p>;
   useEffect(() => {
     if(currencyList.rates) {

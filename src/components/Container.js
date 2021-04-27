@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import InputDialog from './InputDialog';
+import CurrencyTable from './CurrencyTable';
 import fx from 'money';
 import _ from 'lodash';
 import currencyFormatter from '../utils/currencyFormatter';
@@ -56,7 +57,7 @@ export default function Container(props) {
         toCurrency={toCurrency}
       />
       {/* TODO: move this to a sub app that controls the currencies and passes them on to appropriate sub-components */}
-      {/* <CurrencyList conversionRate={0.84} currencySelected={'USD'} /> */}
+      <CurrencyTable currencyList={currencyList} currencyInput={currencyInput} />
     </React.Fragment>
   )
 }

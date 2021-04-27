@@ -1,10 +1,11 @@
 import './css/App.css';
 import Header from './components/Header';
-import CurrencyList from './components/CurrencyList';
+import CurrencyList from './components/CurrencyTable';
 import Container from './components/Container';
 import LoadingInput from './components/LoadingInput';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Footer from './components/Footer';
 
 
 
@@ -35,7 +36,7 @@ function App() {
     <div className="App">
       <Header application={applicationName} links={'list-object to be populated'} />
       <Container currencyList={currencyList} />
-
+      <Footer />
     </div>
   );
 }
