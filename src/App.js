@@ -1,7 +1,7 @@
 import './css/App.css';
 import Header from './components/Header';
 import CurrencyList from './components/CurrencyList';
-import InputDialog from './components/InputDialog';
+import Container from './components/Container';
 import LoadingInput from './components/LoadingInput';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -34,9 +34,8 @@ function App() {
   return (
     <div className="App">
       <Header application={applicationName} links={'list-object to be populated'} />
-      <InputDialog currencyList={currencyList} />
-      {/* TODO: move this to a sub app that controls the currencies and passes them on to appropriate sub-components */}
-      {/* <CurrencyList conversionRate={0.84} currencySelected={'USD'} /> */}
+      <Container currencyList={currencyList} />
+
     </div>
   );
 }
