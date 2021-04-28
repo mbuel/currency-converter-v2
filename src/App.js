@@ -32,6 +32,8 @@ function App() {
   }, []);
 
   if (!currencyList) return <LoadingInput />
+
+  // TODO: need to adjust output to be mobile friendly
   return (
     <div className="App">
       <Header application={applicationName} links={'list-object to be populated'} />

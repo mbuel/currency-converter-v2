@@ -1,10 +1,11 @@
-export default function FilterNum(num, priorNum) {
+export default function FilterNum(num, priorNum = 1) {
+  //  FIXED: got to a state where "prior num is not defined" after typing 144(4) into input
+  // FIXED: further testing revealed any number >= 1000 fails this filter
   
-  num = typeof num === 'string' && num.indexOf('$') >= 0 ? num.split('$')[1] : num;
-  console.warn(num, typeof num);
-  num = isNaN(num) ? priorNum.split('$')[1] : num;
-  console.warn(num, typeof num);
-  console.warn(num);
+  num = num.toString().replace(/\$|,/g, '');
+  priorNum = priorNum.toString().replace(/\$|,/g, '');
+  
+  num = isNaN(num) ? priorNum : num;
 
   return num;
 }

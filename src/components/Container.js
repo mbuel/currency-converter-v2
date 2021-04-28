@@ -56,7 +56,6 @@ export default function Container(props) {
         baseCurrency={baseCurrency}
         toCurrency={toCurrency}
       />
-      {/* TODO: move this to a sub app that controls the currencies and passes them on to appropriate sub-components */}
       <CurrencyTable currencyList={currencyList} currencyInput={currencyInput} />
     </React.Fragment>
   )
