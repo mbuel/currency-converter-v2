@@ -13,10 +13,10 @@ export default function InputHeader(props) {
           <h3>Amount</h3>
         </div>
         <div className="col-4">
-          <h3>Base</h3>
+          <h2>Base</h2>
         </div>
         <div className="col-4">
-          <h3>Transfer</h3>
+          <h2>Transfer</h2>
         </div>
       </div>
     </React.Fragment>

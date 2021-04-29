@@ -25,7 +25,7 @@ function ConversionOutput(props) {
       setToCurrencyLabel(result[toCurrency])
     }
     loadData();
-  }, []);
+  }, [baseCurrency]);
 
   // TODO: needs fixed positioning
   // TODO: move to corner more

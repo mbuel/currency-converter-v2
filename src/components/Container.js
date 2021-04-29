@@ -64,21 +64,25 @@ export default function Container(props) {
     console.log(filteredList);
   }
 
-  const checkCurrency = (currency, setFilter, currencyList) => {
+  const checkCurrency = (currency, currencyList) => {
+    console.log(currencyList.indexOf(currency) > 0);
     if (currencyList.indexOf(currency) > 0) {
-
+      
       return true;
     }
     return false;
   }
 
+  /**
+   * filters list below input and sets to correct currency
+   * @param {DOM} dom element to be modified
+   */
   const filterTyping = (dom) => {
-    console.log(dom.value.length);
     let select = dom.value.length >= 6 ? dom.value.substring(5).trim() : dom.value;
+
     if (dom.id.includes('baseCurrency')) {
       setValidBaseCurrency(false);
       setSelectBaseCurrency(select.toUpperCase());
-      console.log(filteredBaseCurrency);
       // filterCurrencyList(select, filteredBaseCurrency, setFilteredBaseCurrency);
       const list = Object.keys(currencyList.rates).map(el => {
         if (el.indexOf(select) >= 0) {
@@ -86,13 +90,29 @@ export default function Container(props) {
         }
       }).filter((a,b) => a !== undefined);
       setFilteredBaseCurrency(list);
-      console.log(list);
+      if(checkCurrency(select, Object.keys(currencyList.rates))) {
+        console.log('VALID!');
+        setValidBaseCurrency(true);
+        setBaseCurrency(select);
+        setFilteredBaseCurrency(Object.keys(currencyList.rates));
+      }
 
     } else {
       setValidToCurrency(false);
       setSelectToCurrency(select.toUpperCase());
-      filterCurrencyList(select, filteredToCurrency, setFilteredToCurrency);
-      setValidToCurrency(checkCurrency(select, setFilteredToCurrency, filteredToCurrency));
+
+      const list = Object.keys(currencyList.rates).map(el => {
+        if (el.indexOf(select) >= 0) {
+          return el;
+        }
+      }).filter((a,b) => a !== undefined);
+      setFilteredToCurrency(list);
+      if(checkCurrency(select, Object.keys(currencyList.rates))) {
+        console.log('VALID!');
+        setValidToCurrency(true);
+        setToCurrency(select);
+        setFilteredToCurrency(Object.keys(currencyList.rates));
+      }
     }
   }
 

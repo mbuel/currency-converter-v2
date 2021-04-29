@@ -33,7 +33,6 @@ function InputDialog(props) {
 
   // deal with inputs changing
   const handler = (e) => {
-    console.log(e.target.id);
     if(e.target.id.indexOf('appendedInput') > 0) {
       filterTyping(e.target);
     } else {
@@ -42,9 +41,7 @@ function InputDialog(props) {
   }
 
   const baseCurrencySelectorValue = validBaseCurrency === true ? `${getFlagIconByCountryCode(baseCurrency, validBaseCurrency)} ${selectBaseCurrency}` : selectBaseCurrency;
-  console.log(validBaseCurrency, baseCurrencySelectorValue);
   const toCurrencySelectorValue = validToCurrency === true ? `${getFlagIconByCountryCode(toCurrency, validToCurrency)} ${selectToCurrency}` : selectToCurrency;
-  console.log(toCurrencySelectorValue);
 
   return (
     <div className="pt-5 converter container-fluid">

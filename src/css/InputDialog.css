@@ -19,6 +19,7 @@ input {
   background-color: black;
   color: white;
   transform:scale(1.5, 1.8);
+  vertical-align: middle;
   text-align: center;
 }
 
