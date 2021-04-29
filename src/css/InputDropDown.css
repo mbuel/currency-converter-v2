@@ -36,16 +36,16 @@
 
 
 .dropdown-menu {
+  left: -205px !important;
+  top: -51px !important;
   font-size: 1.5em;
   z-index: 1000 !important;
-  border-radius: 25px;
-  border: 1px rgb(22, 161, 131) solid;
+  border-radius: 25px !important;
+  border: 1px rgb(22, 161, 131) solid !important;
   width: 248px !important;
   position: relative !important;
-  left: -210px !important;
-  top: -54px !important;
-  background-color: black;
-  color: white;
+  background-color: black !important;
+  color: white !important;
   float:none !important;
 }
 
