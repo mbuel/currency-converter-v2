@@ -53,21 +53,21 @@ export default function Container(props) {
 
   }
 
-  const filterCurrencyList = (item, filteredList, setFilter) => {
-    // setFilter(currency);
-    console.dir(filteredList);
-    setFilter && setFilter(filteredList.map((a) => {
-      if (a.indexOf(item) > 0) {
-        return a;
-      } 
-    })).filter((a,b) => a !== undefined);
-    console.log(filteredList);
+  const filterCurrencyList = (item, setFilter) => {
+    const list = Object.keys(currencyList.rates).map(el => {
+      if (el.indexOf(item) >= 0) {
+        return el;
+      }
+    }).filter((a,b) => a !== undefined);
+    setFilter(list);
   }
 
-  const checkCurrency = (currency, currencyList) => {
-    console.log(currencyList.indexOf(currency) > 0);
-    if (currencyList.indexOf(currency) > 0) {
-      
+  const checkCurrency = (currency, setValidCurency, setCurrency, resetFilter) => {
+    console.log(Object.keys(currencyList.rates).indexOf(currency) > 0);
+    if (currency !== '' && Object.keys(currencyList.rates).indexOf(currency) > 0) {
+      setValidCurency(true);
+      setCurrency(currency);
+      resetFilter(Object.keys(currencyList.rates));
       return true;
     }
     return false;
@@ -83,19 +83,10 @@ export default function Container(props) {
     if (dom.id.includes('baseCurrency')) {
       setValidBaseCurrency(false);
       setSelectBaseCurrency(select.toUpperCase());
-      // filterCurrencyList(select, filteredBaseCurrency, setFilteredBaseCurrency);
-      const list = Object.keys(currencyList.rates).map(el => {
-        if (el.indexOf(select) >= 0) {
-          return el;
-        }
-      }).filter((a,b) => a !== undefined);
-      setFilteredBaseCurrency(list);
-      if(checkCurrency(select, Object.keys(currencyList.rates))) {
-        console.log('VALID!');
-        setValidBaseCurrency(true);
-        setBaseCurrency(select);
-        setFilteredBaseCurrency(Object.keys(currencyList.rates));
-      }
+
+      filteredBaseCurrency(select, setFilteredBaseCurrency);
+
+      checkCurrency(select, setValidBaseCurrency, setBaseCurrency, setFilteredBaseCurrency);
 
     } else {
       setValidToCurrency(false);
@@ -107,6 +98,8 @@ export default function Container(props) {
         }
       }).filter((a,b) => a !== undefined);
       setFilteredToCurrency(list);
+
+
       if(checkCurrency(select, Object.keys(currencyList.rates))) {
         console.log('VALID!');
         setValidToCurrency(true);
