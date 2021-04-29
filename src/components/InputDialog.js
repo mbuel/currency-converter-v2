@@ -41,46 +41,49 @@ function InputDialog(props) {
   const toCurrencySelectorValue = validToCurrency === true ? `${getFlagIconByCountryCode(toCurrency, validToCurrency)} ${selectToCurrency}` : selectToCurrency;
 
   return (
-    <div className="pt-5 converter container-fluid">
-      <InputHeader />
-      <div className="row">
-        <div className="col-4">
-          <CurrencyInput 
-            handler={handler} 
-            value={currencyInput}
-          />
+    <div className="converter">
+      <div className="pt-5 container-fluid">
+        <InputHeader />
+        <div className="row">
+          <div className="col-4">
+            <CurrencyInput 
+              handler={handler} 
+              value={currencyInput}
+            />
+          </div>
+          <div className="col-4">
+            <InputDropDown 
+              handler={handler} 
+              currencyListKeys={filteredBaseCurrency} 
+              id="baseCurrency" 
+              value={baseCurrencySelectorValue}
+            />
+          </div>
+          <div className="col-4">
+            <InputDropDown 
+              handler={handler} 
+              currencyListKeys={filteredToCurrency} 
+              id="transferCurrency" 
+              value={toCurrencySelectorValue}
+            />
+          </div>
         </div>
-        <div className="col-4">
-          <InputDropDown 
-            handler={handler} 
-            currencyListKeys={filteredBaseCurrency} 
-            id="baseCurrency" 
-            value={baseCurrencySelectorValue}
-          />
-        </div>
-        <div className="col-4">
-          <InputDropDown 
-            handler={handler} 
-            currencyListKeys={filteredToCurrency} 
-            id="transferCurrency" 
-            value={toCurrencySelectorValue}
-          />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-4">
-          <ConversionOutput 
-            rate={rate} 
-            baseCurrency={baseCurrency} 
-            toCurrency={toCurrency} 
-            currencyInput={currencyInput} 
-            currencyOutput={currencyOutput} 
-          />
-        </div>
-        <div className="col-8">
+        <div className="row">
+          <div className="col-4">
+            <ConversionOutput 
+              rate={rate} 
+              baseCurrency={baseCurrency} 
+              toCurrency={toCurrency} 
+              currencyInput={currencyInput} 
+              currencyOutput={currencyOutput} 
+            />
+          </div>
+          <div className="col-8">
 
+          </div>
         </div>
       </div>
+
     </div>
   )
 }

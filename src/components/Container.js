@@ -40,6 +40,8 @@ export default function Container(props) {
       
       setInput(currencyInput);
       
+      // BUG: this seems to have stopped working
+      // BUG: Output currency value is "$" no matter what
       let output = FilterNum(currencyInput, currencyInput) * rate;
       setOutput(output);
     }

@@ -12,5 +12,5 @@ test('Test FilterNum Valid $1)', () => {
 
 test('Test FilterNum imValid', () => {
   const input = null;
-  expect(FilterNum(input)).toBe('0');
+  expect(FilterNum(input)).toBe('1');
 });
