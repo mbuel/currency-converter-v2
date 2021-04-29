@@ -14,37 +14,74 @@ function InputDialog(props) {
 
 
   const {
-    currencyList, 
+    baseCurrency,
     currencyInput, 
-    currencyOutput, 
-    baseCurrency, 
-    toCurrency, 
-    updateInput,
-    rate } = props;
+    currencyOutput,
+    filteredBaseCurrency,
+    filteredToCurrency,
+    filterTyping,
+    rate,
+    selectBaseCurrency,
+    selectToCurrency,
+    setInput,
+    toCurrency,
+    validBaseCurrency,
+    validToCurrency
+    } = props;
+    
 
 
   // deal with inputs changing
   const handler = (e) => {
-    updateInput(e.target.value);
+    console.log(e.target.id);
+    if(e.target.id.indexOf('appendedInput') > 0) {
+      filterTyping(e.target);
+    } else {
+      setInput(e.target.value);
+    }
   }
+
+  const baseCurrencySelectorValue = validBaseCurrency === true ? `${getFlagIconByCountryCode(baseCurrency, validBaseCurrency)} ${selectBaseCurrency}` : selectBaseCurrency;
+  console.log(validBaseCurrency, baseCurrencySelectorValue);
+  const toCurrencySelectorValue = validToCurrency === true ? `${getFlagIconByCountryCode(toCurrency, validToCurrency)} ${selectToCurrency}` : selectToCurrency;
+  console.log(toCurrencySelectorValue);
 
   return (
     <div className="pt-5 converter container-fluid">
       <InputHeader />
       <div className="row">
         <div className="col-4">
-          <CurrencyInput handler={handler} value={currencyInput}/>
+          <CurrencyInput 
+            handler={handler} 
+            value={currencyInput}
+          />
         </div>
         <div className="col-4">
-          <InputDropDown handler={handler} currencyList={currencyList} id="baseCurrency" value={`${getFlagIconByCountryCode(baseCurrency.substring(0,2))} ${baseCurrency}`}/>
+          <InputDropDown 
+            handler={handler} 
+            currencyListKeys={filteredBaseCurrency} 
+            id="baseCurrency" 
+            value={baseCurrencySelectorValue}
+          />
         </div>
         <div className="col-4">
-          <InputDropDown handler={handler} currencyList={currencyList} id="transferCurrency" value={`${getFlagIconByCountryCode(toCurrency.substring(0,2))} ${toCurrency}`}/>
+          <InputDropDown 
+            handler={handler} 
+            currencyListKeys={filteredToCurrency} 
+            id="transferCurrency" 
+            value={toCurrencySelectorValue}
+          />
         </div>
       </div>
       <div className="row">
         <div className="col-4">
-          <ConversionOutput rate={rate} baseCurrency={baseCurrency} toCurrency={toCurrency} currencyInput={currencyInput} currencyOutput={currencyOutput} />
+          <ConversionOutput 
+            rate={rate} 
+            baseCurrency={baseCurrency} 
+            toCurrency={toCurrency} 
+            currencyInput={currencyInput} 
+            currencyOutput={currencyOutput} 
+          />
         </div>
         <div className="col-8">
 

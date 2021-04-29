@@ -21,7 +21,7 @@ export default function CurrencyTableRow(props) {
         return (
           <div className='currency-data row'>
             <div className='col-4'>
-              {getFlagIconByCountryCode(currency.substring(0, 2))} {currency}
+              {getFlagIconByCountryCode(currency)} {currency}
             </div>
             <div className='col-4'>
               {currencyList.rates[currency]}
