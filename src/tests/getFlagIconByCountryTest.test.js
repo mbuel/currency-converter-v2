@@ -1,6 +1,8 @@
 import getFlagIconByCountryCode from '../utils/getFlagIconByCountryCode';
 
-test('Test invalid Country Code', () => {
-  const countryCode = 'USD';
-  expect(getFlagIconByCountryCode(countryCode)).toBe('');
+test('Invalid Country Code', () => {
+  const currencyCode = 'AUD';
+  const countryIcon = getFlagIconByCountryCode(currencyCode);
+  console.log(countryIcon);
+  expect(countryIcon).toBe('🇦🇺');
 });

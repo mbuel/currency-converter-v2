@@ -32,10 +32,11 @@ function ConversionOutput(props) {
   return (
     <>
       <div>
-        <h2>{baseCurrency} - {baseCurrencyLabel}</h2>
+        <h2>From: {baseCurrency} - {baseCurrencyLabel}</h2>
         <div>Input: <span>{currencyInput}</span></div>
-        <div>rate: <span>{rate}</span></div>
-        <div>Output: <span>{currencyOutput}</span></div>
+        <div>Rate: <span>{rate}</span></div>
+        <div>To: {toCurrency} - {toCurrencyLabel}</div>
+        <div>Conversion: <span>{currencyOutput}</span></div>
 
       </div>
     </>

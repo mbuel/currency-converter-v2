@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../css/InputDialog.css';
 import FontAwesome from '../utils//getFontIcon';
 

@@ -1,13 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import '../css/InputDialog.css';
 import ConversionOutput from './sub-Components/ConversionOutput';
 import InputDropDown from './sub-Components/InputDropDown';
 import InputHeader from './sub-Components/InputHeader';
 import CurrencyInput from './sub-Components/CurrencyInput';
 import getFlagIconByCountryCode from '../utils/getFlagIconByCountryCode';
-// import fx from 'money';
-// import _ from 'lodash';
-
 
 
 function InputDialog(props) {

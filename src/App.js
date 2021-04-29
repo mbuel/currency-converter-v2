@@ -1,6 +1,5 @@
 import './css/App.css';
 import Header from './components/Header';
-import CurrencyList from './components/CurrencyTable';
 import Container from './components/Container';
 import LoadingInput from './components/LoadingInput';
 import { useEffect, useState } from 'react';
