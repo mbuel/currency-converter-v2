@@ -27,41 +27,28 @@ export default function Container(props) {
   const [baseCurrency, setBaseCurrency] = useState(selectBaseCurrency);
   const [toCurrency, setToCurrency] = useState(selectToCurrency);
 
-  useEffect(() => {
-    
-    fx.baseCurrency = baseCurrency;
-    fx.rates = currencyList.rates;
-    fx.settings.from = baseCurrency;
-    fx.settings.to = toCurrency;
-    setBaseFormatter(currencyFormatter(baseCurrency));
-    setToFormatter(currencyFormatter(toCurrency));
-    
-    setRate(_.ceil((fx(1).from(baseCurrency).to(toCurrency)), 4));
-    
-    setInput(currencyInput);
-    
-    // FIXED: this seems to have stopped working
-    // FIXED: Output currency value is "$" no matter what
-    // let output = FilterNum(currencyInput, currencyInput) * rate;
-    setOutput(currencyInput);
-  }, [baseCurrency, toCurrency, currencyInput]);
-
   const setOutput = (num) => {
     let output = FilterNum(num, num) * rate;
     validToCurrency && toFormatter && setCurrencyOutput(toFormatter.format(output));
   }
+
   const setInput = (num) => {
     validBaseCurrency && baseFormatter && setCurrencyInput(baseFormatter.format(FilterNum(num, currencyInput)));
 
   }
 
-  const filterCurrencyList = (item, setFilter) => {
-    const list = Object.keys(currencyList.rates).map(el => {
-      if (el.indexOf(item) >= 0) {
-        return el;
-      }
-    }).filter((a,b) => a !== undefined);
-    setFilter(list);
+  const setMoney = () => {
+    fx.baseCurrency = baseCurrency;
+    fx.rates = currencyList.rates;
+    fx.settings.from = baseCurrency;
+    fx.settings.to = toCurrency;
+
+    console.log(fx.rates, currencyList.rates);
+
+    setBaseFormatter(currencyFormatter(baseCurrency));
+    setToFormatter(currencyFormatter(toCurrency));
+    
+    setRate(_.ceil((fx(1).from(baseCurrency).to(toCurrency)), 4));
   }
 
   const checkCurrency = (currency, setValidCurency, setCurrency, resetFilter) => {
@@ -70,9 +57,32 @@ export default function Container(props) {
       setValidCurency(true);
       setCurrency(currency);
       resetFilter(Object.keys(currencyList.rates));
+
       return true;
     }
     return false;
+  }
+
+  useEffect(() => {
+    setMoney();
+    
+    setInput(currencyInput);
+    
+    // FIXED: this seems to have stopped working
+    // FIXED: Output currency value is "$" no matter what
+    // let output = FilterNum(currencyInput, currencyInput) * rate;
+    setOutput(currencyInput);
+  }, [baseCurrency, toCurrency, checkCurrency]);
+
+
+
+  const filterCurrencyList = (item, setFilter) => {
+    const list = Object.keys(currencyList.rates).map(el => {
+      if (el.indexOf(item) >= 0) {
+        return el;
+      }
+    }).filter((a,b) => a !== undefined);
+    setFilter(list);
   }
 
   /**
