@@ -14,6 +14,7 @@ function InputDialog(props) {
     baseCurrency,
     currencyInput, 
     currencyOutput,
+    currencySelector,
     filteredBaseCurrency,
     filteredToCurrency,
     filterTyping,
@@ -57,6 +58,7 @@ function InputDialog(props) {
               currencyListKeys={filteredBaseCurrency} 
               id="baseCurrency" 
               value={baseCurrencySelectorValue}
+              currencySelector={currencySelector}
             />
           </div>
           <div className="col-4">
@@ -65,6 +67,7 @@ function InputDialog(props) {
               currencyListKeys={filteredToCurrency} 
               id="transferCurrency" 
               value={toCurrencySelectorValue}
+              currencySelector={currencySelector}
             />
           </div>
         </div>

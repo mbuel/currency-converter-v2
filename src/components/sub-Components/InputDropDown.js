@@ -5,7 +5,7 @@ import FontAwesomeIcon from '../../utils/getFontIcon';
 
 
 export default function InputDropDown(props) {
-  const {currencyListKeys, id, value, handler} = props;
+  const {currencyListKeys, id, value, handler, currencySelector} = props;
   
   return (
     <React.Fragment>
@@ -35,7 +35,7 @@ export default function InputDropDown(props) {
       {/* DONE: search filter */}
       <ul class="dropdown-menu">
         <div class="drop-container">
-          <CurrencySelection currencyListKeys={currencyListKeys} />
+          <CurrencySelection currencySelector={currencySelector} currencyListKeys={currencyListKeys} />
         </div>
       </ul>
     {/* </div> */}
