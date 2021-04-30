@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-// import '../css/ConversionOutput.css';
+import '../../css/ConversionOutput.css';
 
 import getFlagIconByCountryCode from '../../utils/getFlagIconByCountryCode';
 
@@ -31,7 +31,7 @@ function ConversionOutput(props) {
   // TODO: move to corner more
   return (
     <>
-      <div>
+      <div className="converted-output">
         <h2>From: {baseCurrency} - {baseCurrencyLabel}</h2>
         <div>Input: <span>{currencyInput}</span></div>
         <div>Rate: <span>{rate}</span></div>
