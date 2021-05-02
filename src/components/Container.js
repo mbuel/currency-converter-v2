@@ -21,9 +21,6 @@ export default function Container(props) {
   const [selectToCurrency, setSelectToCurrency] = useState();
   
   let baseFormatter; 
-  let toFormatter;
-
-
 
   const setInput = (num) => {
     baseFormatter || setMoney();
@@ -36,7 +33,6 @@ export default function Container(props) {
     baseFormatter = currencyFormatter(baseCurrency);
     setValidBaseCurrency(true);
 
-    toFormatter = currencyFormatter(toCurrency);
     setValidToCurrency(true);
     
     setRate(currencyList.rates[toCurrency]);
@@ -92,9 +88,12 @@ export default function Container(props) {
    * @param {DOM} dom element to be modified
    */
   const filterTyping = (dom) => {
-    let select = dom.value.match(/[aA-zZ]{0,3}/).toString().toUpperCase();
+    let select = dom.value.length > 3 ? 
+      dom.value.substring(dom.value.length - 2).trim() :
+      dom.value.match(/[aA-zZ]{0,3}/).toString().toUpperCase();
+    console.log(select.match(/(\s\S)*[aA-zZ]{0,3}/));
     console.log(select);
-    setValidBaseCurrency(false);
+    // setValidBaseCurrency(false);
     setCurrencySelectionByID(dom.id, select);
 
   }
@@ -106,19 +105,20 @@ export default function Container(props) {
    */
   const setCurrencySelectionByID = (id, currency) => {
     if (id.includes('baseCurrency')) {
+      setValidBaseCurrency(checkCurrency(currency, setValidBaseCurrency, updateBaseCurrency, setFilteredBaseCurrency));
       
       setSelectBaseCurrency(currency.toUpperCase());
-
-      filterCurrencyList(currency, setFilteredBaseCurrency);
-
-      checkCurrency(currency, setValidBaseCurrency, updateBaseCurrency, setFilteredBaseCurrency);
-
+      
+      filterCurrencyList(currency.toUpperCase(), setFilteredBaseCurrency);
+      
+      
     } else if (id.includes('transferCurrency')) {
+      setValidToCurrency(checkCurrency(currency, setValidToCurrency, updateToCurrency, setFilteredToCurrency));
       setSelectToCurrency(currency.toUpperCase());
+      
+      console.log(currency, selectToCurrency);
+      filterCurrencyList(currency.toUpperCase(), setFilteredToCurrency);
 
-      filterCurrencyList(currency, setFilteredToCurrency);
-
-      checkCurrency(currency, setValidToCurrency, updateToCurrency, setFilteredToCurrency);
 
     }
   }
