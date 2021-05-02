@@ -13,7 +13,6 @@ function InputDialog(props) {
   const {
     baseCurrency,
     currencyInput, 
-    currencyOutput,
     currencySelector,
     filteredBaseCurrency,
     filteredToCurrency,
@@ -63,7 +62,6 @@ function InputDialog(props) {
                   baseCurrency={baseCurrency} 
                   toCurrency={toCurrency} 
                   currencyInput={currencyInput} 
-                  currencyOutput={currencyOutput} 
                 />
               </div>
             </div>

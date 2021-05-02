@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import createCurrencyList from '../../utils/createCurrencyList';
 import getFlagIconByCountryCode from '../../utils/getFlagIconByCountryCode';
 import FilterNum from '../../utils/FilterNum';
+import currencyFormatter from '../../utils/currencyFormatter';
 
 export default function CurrencyTableRow(props) {
   const { currencyList, currencyInput } = props;
 
   const [currenciesList, setCurrenciesList] = useState([]);
+
+  let toFormatter = null;
 
   useEffect(() => {
     if (currencyList.rates) {
@@ -14,10 +17,12 @@ export default function CurrencyTableRow(props) {
     }
 
   }, []);
-  console.log(currencyInput);
+
+
   return (
     <>
       {currenciesList.map((currency, i) => {
+        toFormatter = currencyFormatter(currency);
         return (
           <div className='currency-data row'>
             <div className='col-4'>
@@ -27,7 +32,7 @@ export default function CurrencyTableRow(props) {
               {currencyList.rates[currency]}
             </div>
             <div className='col-4'>
-              {FilterNum(currencyInput) * currencyList.rates[currency]}32
+              {toFormatter.format(FilterNum(currencyInput) * currencyList.rates[currency])}
             </div>
           </div>
         )

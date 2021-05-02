@@ -1,20 +1,38 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import '../../css/ConversionOutput.css';
-
+import currencyFormatter from '../../utils/currencyFormatter';
+import FilterNum from '../../utils/FilterNum';
 import getFlagIconByCountryCode from '../../utils/getFlagIconByCountryCode';
 
 
 
 function ConversionOutput(props) {
-  const {baseCurrency, toCurrency, rate, currencyInput, currencyOutput} = props;
+  const {baseCurrency, toCurrency, rate, currencyInput} = props;
 
   const [baseCurrencyLabel, setBaseCurrencyLabel] = useState('');
   const [toCurrencyLabel, setToCurrencyLabel] = useState('');
+  const [currencyOutput, setCurrencyOutput] = useState(undefined);
+  
+  const api = 'https://altexchangerateapi.herokuapp.com/currencies';
+  
+  let toFormatter = undefined;
+  
+  const setOutput = (num) => {
+    let output = FilterNum(num, num) * rate;
+    
+    setCurrencyOutput(toFormatter.format(output));
+  }
 
-  const api = 'https://altexchangerateapi.herokuapp.com/currencies'
-
+  
+  
   useEffect( () => {
+    console.log(toCurrency, currencyInput);
+    toFormatter = toCurrency && currencyFormatter(toCurrency);
+
+    toFormatter && setOutput(currencyInput);
+    console.log(currencyOutput);
+
     const loadData = async () => {
       let result = await axios(
         `${api}`
@@ -25,7 +43,7 @@ function ConversionOutput(props) {
       setToCurrencyLabel(result[toCurrency])
     }
     loadData();
-  }, [baseCurrency]);
+  }, [baseCurrency, toCurrency, currencyInput]);
 
   // FIXED: needs fixed positioning
   // FIXED: move to corner more

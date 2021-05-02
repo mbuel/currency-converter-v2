@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import InputDialog from './InputDialog';
 import CurrencyTable from './CurrencyTable';
-import fx, { base } from 'money';
-import _ from 'lodash';
 import $ from 'jquery';
 import currencyFormatter from '../utils/currencyFormatter';
 import FilterNum from '../utils/FilterNum';
@@ -15,7 +13,6 @@ export default function Container(props) {
 
   const [rate, setRate] = useState(null);
   const [currencyInput, setCurrencyInput] = useState();
-  const [currencyOutput, setCurrencyOutput] = useState();
   const [validBaseCurrency, setValidBaseCurrency] = useState();
   const [validToCurrency, setValidToCurrency] = useState();
   const [selectBaseCurrency, setSelectBaseCurrency] = useState();
@@ -26,41 +23,28 @@ export default function Container(props) {
   let baseFormatter; 
   let toFormatter;
 
-  const setOutput = (num) => {
-    toFormatter || setMoney();
-    let output = FilterNum(num, num) * rate;
-    console.log(rate, output);
-    validToCurrency && toFormatter && setCurrencyOutput(toFormatter.format(output));
-  }
+
 
   const setInput = (num) => {
     baseFormatter || setMoney();
     const val = baseFormatter.format(FilterNum(num, currencyInput));
     console.log(val);
     validBaseCurrency && baseFormatter && setCurrencyInput(val);
-    setOutput(num);
   }
 
   const setMoney = () => {
-    fx.baseCurrency = baseCurrency;
-    fx.rates = currencyList.rates;
-    fx.settings.from = baseCurrency;
-    fx.settings.to = toCurrency;
-
-    console.log(baseCurrency);
-
     baseFormatter = currencyFormatter(baseCurrency);
     setValidBaseCurrency(true);
 
     toFormatter = currencyFormatter(toCurrency);
     setValidToCurrency(true);
     
-    setRate(_.ceil((fx(1).from(baseCurrency).to(toCurrency)), 4));
+    setRate(currencyList.rates[toCurrency]);
   }
 
   const checkCurrency = (currency, setValidCurency, setCurrency, resetFilter) => {
-    console.log(Object.keys(currencyList.rates).indexOf(currency) > 0);
-    if (currency !== '' && Object.keys(currencyList.rates).indexOf(currency) > 0) {
+    console.log(currencyList.rates[currency]);
+    if (currencyList.rates[currency] !== undefined) {
       setCurrency(currency);
       
       setValidCurency(true);
@@ -75,23 +59,20 @@ export default function Container(props) {
     if (!baseCurrency || !toCurrency) {
       return;
     }
-    console.log('update', baseCurrency, toCurrency);
     setFilteredBaseCurrency(createCurrencyList(currencyList.rates));
     setFilteredToCurrency(createCurrencyList(currencyList.rates));
     setSelectBaseCurrency(baseCurrency);
     setSelectToCurrency(toCurrency);
 
     setMoney();
+
     setTimeout(() => {
-      console.log(currencyInput);
+      
       const currentInput = currencyInput !== undefined ? currencyInput : 1;
       setInput(currentInput);
   
       setInput(currentInput);
       
-      setOutput(1);
-  
-      setOutput(currentInput);
     }, 500);
   }, [baseCurrency, toCurrency, currencyList]);
 
@@ -111,7 +92,9 @@ export default function Container(props) {
    * @param {DOM} dom element to be modified
    */
   const filterTyping = (dom) => {
-    let select = dom.value.match(/[A-Z]{0,3}/).toString();
+    let select = dom.value.match(/[aA-zZ]{0,3}/).toString().toUpperCase();
+    console.log(select);
+    setValidBaseCurrency(false);
     setCurrencySelectionByID(dom.id, select);
 
   }
@@ -123,7 +106,7 @@ export default function Container(props) {
    */
   const setCurrencySelectionByID = (id, currency) => {
     if (id.includes('baseCurrency')) {
-      setValidBaseCurrency(false);
+      
       setSelectBaseCurrency(currency.toUpperCase());
 
       filterCurrencyList(currency, setFilteredBaseCurrency);
@@ -131,7 +114,6 @@ export default function Container(props) {
       checkCurrency(currency, setValidBaseCurrency, updateBaseCurrency, setFilteredBaseCurrency);
 
     } else if (id.includes('transferCurrency')) {
-      setValidToCurrency(false);
       setSelectToCurrency(currency.toUpperCase());
 
       filterCurrencyList(currency, setFilteredToCurrency);
@@ -152,7 +134,6 @@ export default function Container(props) {
       <InputDialog 
         baseCurrency={baseCurrency}
         currencyInput={currencyInput} 
-        currencyOutput={currencyOutput}
         currencySelector={currencySelector}
         filteredBaseCurrency={filteredBaseCurrency}
         filteredToCurrency={filteredToCurrency}
@@ -162,7 +143,6 @@ export default function Container(props) {
         setInput={setInput}
         toCurrency={toCurrency}
         rate={rate}
-        updateOutput={setOutput}
         validBaseCurrency={validBaseCurrency}
         validToCurrency={validToCurrency}
       />

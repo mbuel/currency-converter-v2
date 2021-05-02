@@ -41,11 +41,11 @@
 
 .currency-table {
   padding: 15px;
-  position: fixed;
+  position: fixed !important;
+  top: 460px !important;
   margin-left: 100px;
   border-radius: 25px;
   border: 1px rgb(22, 161, 131) solid;
-  bottom: 50px;
   height: 350px;
   width: 90%;
   z-index: -100;
@@ -54,7 +54,8 @@
 
 @media only screen and (max-width: 960px) {
   .currency-table {
-    position: absolute;
+    position: fixed !important;
+    top: 560px !important;
     margin-left: 40px !important;
     font-size: 1.0em;
   }

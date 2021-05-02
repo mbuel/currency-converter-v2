@@ -33,8 +33,8 @@ export default function InputDropDown(props) {
       {/* DONE: Needs to be size limited with a scroll bar */}
       {/* FIXED: needs to propagate changes to rest of page */}
       {/* DONE: search filter */}
-      <ul class="dropdown-menu">
-        <div class="drop-container">
+      <ul class={`dropdown-menu`}>
+        <div class={`drop-container`}>
           <CurrencySelection currencySelector={currencySelector} currencyListKeys={currencyListKeys} />
         </div>
       </ul>
