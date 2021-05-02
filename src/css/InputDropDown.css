@@ -39,14 +39,29 @@
   position: absolute !important;
   left: -190px !important;
   top: -3px !important;
-  font-size: 1.8em;
-  z-index: 1000 !important;
+  font-size: 1.75em !important;
+  z-index: 2000 !important;
   border-radius: 25px !important;
   border: 1px rgb(22, 161, 131) solid !important;
   width: 248px !important;
   background-color: black !important;
   color: white !important;
   float:none !important;
+}
+
+@media only screen and (max-width: 960px) {
+  .dropdown-toggle {
+    position: relative;
+    font-size: 0.8em;
+    top: -4px;
+    left: -2px;
+  }
+  .dropdown-menu {
+    position: absolute !important;
+    left: -160px !important;
+    font-size: 1.3em;
+    width: 202px !important;
+  }
 }
 
 

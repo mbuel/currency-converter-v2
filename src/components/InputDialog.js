@@ -44,15 +44,33 @@ function InputDialog(props) {
   return (
     <div className="converter">
       <div className="pt-5 container-fluid">
-        <InputHeader />
         <div className="row">
-          <div className="col-4">
-            <CurrencyInput 
-              handler={handler} 
-              value={currencyInput}
-            />
+          <div className="col-12 col-lg-4">
+            <div className="row">
+              <div className="col-6 col-lg-12">
+                <InputHeader padBottom="2" label="Input" />
+                <CurrencyInput 
+                  handler={handler} 
+                  value={currencyInput}
+                />
+              </div>
+              <hr />
+
+              <div className="col-6 col-lg-12">
+              
+                <ConversionOutput 
+                  rate={rate} 
+                  baseCurrency={baseCurrency} 
+                  toCurrency={toCurrency} 
+                  currencyInput={currencyInput} 
+                  currencyOutput={currencyOutput} 
+                />
+              </div>
+            </div>
           </div>
-          <div className="col-4">
+
+          <div className="col-12 col-lg-4">
+            <InputHeader padBottom="0" label="From" />
             <InputDropDown 
               handler={handler} 
               currencyListKeys={filteredBaseCurrency} 
@@ -61,7 +79,8 @@ function InputDialog(props) {
               currencySelector={currencySelector}
             />
           </div>
-          <div className="col-4">
+          <div className="col-12 col-lg-4">
+            <InputHeader padBottom="0" label="To" />
             <InputDropDown 
               handler={handler} 
               currencyListKeys={filteredToCurrency} 
@@ -71,20 +90,7 @@ function InputDialog(props) {
             />
           </div>
         </div>
-        <div className="row">
-          <div className="col-4">
-            <ConversionOutput 
-              rate={rate} 
-              baseCurrency={baseCurrency} 
-              toCurrency={toCurrency} 
-              currencyInput={currencyInput} 
-              currencyOutput={currencyOutput} 
-            />
-          </div>
-          <div className="col-8">
 
-          </div>
-        </div>
       </div>
 
     </div>

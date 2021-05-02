@@ -27,8 +27,23 @@ input {
 @keyframes spinner {
   to { transform: rotate(360deg); }
 }
+
 /* This is the class name given by the Font Awesome component when icon contains 'spinner' */
 .fa-spinner {
-  /* Apply 'spinner' keyframes looping once every second (1s)  */
-  animation: spinner 1s linear infinite;
+    /* Apply 'spinner' keyframes looping once every second (1s)  */
+    animation: spinner 1s linear infinite;
+}
+
+@media only screen and (max-width: 980px) {
+  .converter {
+    position: fixed;
+    margin-left: 40px !important;
+    top: 60px !important;
+    height: 480px !important;
+    width: 90% !important;
+    border-radius: 25px !important;
+  }
+  input {
+    transform:scale(1.2, 1.3);
+  }
 }

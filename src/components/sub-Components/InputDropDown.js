@@ -31,7 +31,7 @@ export default function InputDropDown(props) {
       {/* DONE: need to position this menu with CSS to be below input */}
       {/* DONE: Needs styling to match page */}
       {/* DONE: Needs to be size limited with a scroll bar */}
-      {/* TODO: needs to propagate changes to rest of page */}
+      {/* FIXED: needs to propagate changes to rest of page */}
       {/* DONE: search filter */}
       <ul class="dropdown-menu">
         <div class="drop-container">

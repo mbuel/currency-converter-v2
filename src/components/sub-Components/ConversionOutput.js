@@ -27,8 +27,8 @@ function ConversionOutput(props) {
     loadData();
   }, [baseCurrency]);
 
-  // TODO: needs fixed positioning
-  // TODO: move to corner more
+  // FIXED: needs fixed positioning
+  // FIXED: move to corner more
   return (
     <>
       <div className="converted-output">
