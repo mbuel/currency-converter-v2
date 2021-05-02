@@ -1,0 +1,62 @@
+.currency-data:nth-child(odd) {
+  background-color: rgb(15, 107, 87);
+}
+
+.currency-list {
+  background: rgb(20,33,31);
+  width:100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 280px;
+  color:white;
+  scrollbar-color: rgb(22, 161, 131) rgb(6, 10, 10) !important;
+  scrollbar-width: 10px !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 190px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20,33,31,1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(22, 161, 131); 
+}thin
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(30, 214, 174); 
+}
+
+.heading {
+  font-size: 1.3em;
+  border-radius: 25px 25px 0px 0px;
+  background: linear-gradient(180deg, rgba(20,33,31,1) 35%, rgba(0,0,0,1) 100%); 
+  color: white;
+}
+
+.currency-table {
+  padding: 15px;
+  position: fixed !important;
+  top: 460px !important;
+  margin-left: 100px;
+  border-radius: 25px;
+  border: 1px rgb(22, 161, 131) solid;
+  height: 350px;
+  width: 90%;
+  z-index: -100;
+  font-size: 1.3em;
+}
+
+@media only screen and (max-width: 960px) {
+  .currency-table {
+    position: fixed !important;
+    top: 560px !important;
+    margin-left: 40px !important;
+    font-size: 1.0em;
+  }
+}

@@ -1,6 +1,5 @@
 import React from 'react';
-import reactDom from 'react-dom';
-import '../css/App.css';
+import '../css/Header.css';
 
 
 function Header(props) {
@@ -9,13 +8,7 @@ function Header(props) {
   return (
     <React.Fragment>
       <header className="App-header">
-        <p>
-          {application} and {links}
-        </p>
-        <p>
-          This will be awesome when completed!
-        </p>
-
+        <h1>{application}</h1>
       </header>
     </React.Fragment>
   );

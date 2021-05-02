@@ -1,0 +1,10 @@
+.currency-link {
+  transition: all .2s ease-in-out;
+}
+
+.currency-link:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  color:lightseagreen;
+  text-decoration: underline;
+}
