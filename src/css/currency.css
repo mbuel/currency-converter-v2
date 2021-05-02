@@ -1,8 +1,0 @@
-.container-fluid {
-  position: fixed;
-  top: 200px;
-  width: 100%;
-}
-.row:nth-child(odd) {
-  background-color: aquamarine;
-}

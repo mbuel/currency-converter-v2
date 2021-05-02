@@ -8,9 +8,11 @@
     1. This API tracks exchange rates of 33 different currencies. They are:
     2. 73bae01c122ba3be0c1a3d7278306dfd (KEY)
     3. http://api.exchangeratesapi.io/v1/latest?access_key=73bae01c122ba3be0c1a3d7278306dfd&symbols=USD,AUD,CAD,PLN,MXN&format=1
-    4. AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
-    5. Get /latest?base=EUR
-    6. JSON DATA:{
+    4. Alternate API:
+       1.  https://altexchangerateapi.herokuapp.com/
+    5. AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
+    6. Get /latest?base=EUR
+    7. JSON DATA:{
   "base":"EUR",
   "date":"2019-05-20",
   "rates":{
