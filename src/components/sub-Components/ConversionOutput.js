@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 // import axios from 'axios';
 import LoadData from '../../utils/LoadData';
 import '../../css/ConversionOutput.css';
@@ -13,10 +13,9 @@ function ConversionOutput(props) {
   const [baseCurrencyLabel, setBaseCurrencyLabel] = useState('');
   const [toCurrencyLabel, setToCurrencyLabel] = useState('');
   const [currencyOutput, setCurrencyOutput] = useState(undefined);
+  const [toFormatter, setToFormatter] = useState();
   
   const api = 'https://altexchangerateapi.herokuapp.com/currencies';
-  
-  let toFormatter = undefined;
   
   const setOutput = (num) => {
     let output = FilterNum(num, num) * rate;
@@ -30,11 +29,9 @@ function ConversionOutput(props) {
   }
   
   useEffect( () => {
-    console.log(toCurrency, currencyInput);
-    toFormatter = toCurrency && currencyFormatter(toCurrency);
+    setToFormatter(toCurrency && currencyFormatter(toCurrency));
 
     toFormatter && setOutput(currencyInput);
-    console.log(currencyOutput);
 
     LoadData(api, initLabels);
   }, [baseCurrency, toCurrency, currencyInput]);
@@ -48,6 +45,7 @@ function ConversionOutput(props) {
         <div>Input: <span>{currencyInput}</span></div>
         <div>Rate: <span>{rate}</span></div>
         <div>To: {toCurrency} - {toCurrencyLabel}</div>
+        {/* BUG: This is not correctly displaying values */}
         <div>Conversion: <span>{currencyOutput}</span></div>
 
       </div>

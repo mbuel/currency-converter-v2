@@ -26,8 +26,8 @@ export default function Container(props) {
   const setInput = (num) => {
     baseFormatter || setMoney();
     const val = baseFormatter.format(FilterNum(num, currencyInput));
-    console.log(val);
-    validBaseCurrency && baseFormatter && setCurrencyInput(val);
+    setSymbol(val.split(/\ ?[+-]?[0-9]{1,3}(?:,?[0-9])*(?:\.[0-9]{1,2})?/));
+    setCurrencyInput(num);
   }
 
   const setMoney = () => {
@@ -106,9 +106,6 @@ export default function Container(props) {
   const setCurrencySelectionByID = (id, currency) => {
     if (id.includes('baseCurrency')) {
       const currencyValid = checkCurrency(currency, setValidBaseCurrency, updateBaseCurrency, setFilteredBaseCurrency); 
-      if (currencyValid) {
-        setSymbol();
-            } 
 
       setValidBaseCurrency(currencyValid);
       

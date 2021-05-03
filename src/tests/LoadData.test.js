@@ -1,7 +1,7 @@
 import LoadData from '../utils/LoadData';
 
 
-test('Test valid endpoint', () => {
+test('valid endpoint', () => {
   const api = 'https://altexchangerateapi.herokuapp.com/currencies';
   let results = undefined;
   const setTest = (result) => {

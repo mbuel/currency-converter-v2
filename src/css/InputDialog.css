@@ -1,8 +1,8 @@
 .converter {
   position: fixed;
   margin-left: 100px !important;
-  top: 90px;
-  height: 340px;
+  top: 70px;
+  height: 280px;
   width: 90%;
   border-radius: 25px;
   border: 1px rgb(22, 161, 131) solid;
@@ -12,7 +12,6 @@
 }
 
 input {
-  position: relative;
   display: inline-flex;
   border-radius: 25px;
   border: 1px rgb(22, 161, 131) solid;

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/CurrencyInput.css';
 
 
 export default function CurrencyInput(props) {
