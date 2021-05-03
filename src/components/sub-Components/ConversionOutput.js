@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import LoadData from '../../utils/LoadData';
 import '../../css/ConversionOutput.css';
 import currencyFormatter from '../../utils/currencyFormatter';
 import FilterNum from '../../utils/FilterNum';
-import getFlagIconByCountryCode from '../../utils/getFlagIconByCountryCode';
 
 
 
@@ -24,7 +24,10 @@ function ConversionOutput(props) {
     setCurrencyOutput(toFormatter.format(output));
   }
 
-  
+  const initLabels = (result) => {
+    setBaseCurrencyLabel(result[baseCurrency]);
+    setToCurrencyLabel(result[toCurrency])
+  }
   
   useEffect( () => {
     console.log(toCurrency, currencyInput);
@@ -33,16 +36,7 @@ function ConversionOutput(props) {
     toFormatter && setOutput(currencyInput);
     console.log(currencyOutput);
 
-    const loadData = async () => {
-      let result = await axios(
-        `${api}`
-      );
-
-      result = JSON.parse(result.request.responseText);
-      setBaseCurrencyLabel(result[baseCurrency]);
-      setToCurrencyLabel(result[toCurrency])
-    }
-    loadData();
+    LoadData(api, initLabels);
   }, [baseCurrency, toCurrency, currencyInput]);
 
   // FIXED: needs fixed positioning

@@ -21,6 +21,7 @@ function InputDialog(props) {
     selectBaseCurrency,
     selectToCurrency,
     setInput,
+    symbol,
     toCurrency,
     validBaseCurrency,
     validToCurrency
@@ -50,6 +51,7 @@ function InputDialog(props) {
                 <InputHeader padBottom="2" label="Input" />
                 <CurrencyInput 
                   handler={handler} 
+                  symbol={symbol}
                   value={currencyInput}
                 />
               </div>

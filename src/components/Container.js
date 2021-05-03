@@ -19,6 +19,7 @@ export default function Container(props) {
   const [filteredBaseCurrency, setFilteredBaseCurrency] = useState();
   const [filteredToCurrency, setFilteredToCurrency] = useState();
   const [selectToCurrency, setSelectToCurrency] = useState();
+  const [symbol, setSymbol] = useState('$');
   
   let baseFormatter; 
 
@@ -89,11 +90,10 @@ export default function Container(props) {
    */
   const filterTyping = (dom) => {
     let select = dom.value.length > 3 ? 
-      dom.value.substring(dom.value.length - 2).trim() :
-      dom.value.match(/[aA-zZ]{0,3}/).toString().toUpperCase();
-    console.log(select.match(/(\s\S)*[aA-zZ]{0,3}/));
-    console.log(select);
-    // setValidBaseCurrency(false);
+
+    dom.value.substring(dom.value.length - 2).trim() :
+    dom.value.match(/[aA-zZ]{0,3}/).toString().toUpperCase();
+
     setCurrencySelectionByID(dom.id, select);
 
   }
@@ -105,7 +105,12 @@ export default function Container(props) {
    */
   const setCurrencySelectionByID = (id, currency) => {
     if (id.includes('baseCurrency')) {
-      setValidBaseCurrency(checkCurrency(currency, setValidBaseCurrency, updateBaseCurrency, setFilteredBaseCurrency));
+      const currencyValid = checkCurrency(currency, setValidBaseCurrency, updateBaseCurrency, setFilteredBaseCurrency); 
+      if (currencyValid) {
+        setSymbol();
+            } 
+
+      setValidBaseCurrency(currencyValid);
       
       setSelectBaseCurrency(currency.toUpperCase());
       
@@ -143,9 +148,11 @@ export default function Container(props) {
         setInput={setInput}
         toCurrency={toCurrency}
         rate={rate}
+        symbol={symbol}
         validBaseCurrency={validBaseCurrency}
         validToCurrency={validToCurrency}
       />
+      {/* TODO: Need to add tabbed container here that will choose between chart and table */}
       <CurrencyTable 
         currencyList={currencyList} 
         currencyInput={currencyInput} 
