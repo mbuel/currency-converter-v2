@@ -19,7 +19,6 @@ function CurrencyTable(props) {
   if (currentTab === 'CHART') {
     content = (
       <React.Fragment>
-        
           <CurrencyTableHeader />
           <div className="currency-list">
             <CurrencyTableRow currencyList={currencyList} currencyInput={currencyInput} />
@@ -43,7 +42,7 @@ function CurrencyTable(props) {
 
         <TabContainer toggleTab={setTab} />
         <div className='currency-table container-fluid'>
-          {content} 
+          {content}
         </div>
       </React.Fragment>
   )

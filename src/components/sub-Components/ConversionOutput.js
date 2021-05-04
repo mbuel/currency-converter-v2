@@ -22,13 +22,17 @@ function ConversionOutput(props) {
   
   const setOutput = (num) => {
     let output = FilterNum(num, num) * rate;
-    
+    toFormatter || setFormatter(toCurrency);
     setCurrencyOutput(toFormatter.format(output));
   }
 
   const initLabels = (result) => {
     setBaseCurrencyLabel(result[baseCurrency]);
     setToCurrencyLabel(result[toCurrency])
+  }
+
+  const setFormatter = (format) => {
+    setToFormatter(toCurrency && currencyFormatter(format));
   }
 
   useEffect( () => {
@@ -47,6 +51,7 @@ function ConversionOutput(props) {
       setFromCurrency(fromFormatter.format(currencyInput));
       
   }, [currencyInput, rate, toFormatter]);
+
   
 
   // FIXED: needs fixed positioning
