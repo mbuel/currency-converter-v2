@@ -19,24 +19,21 @@ export default function Container(props) {
   const [filteredBaseCurrency, setFilteredBaseCurrency] = useState();
   const [filteredToCurrency, setFilteredToCurrency] = useState();
   const [selectToCurrency, setSelectToCurrency] = useState();
+  const [symbol, setSymbol] = useState('$');
   
   let baseFormatter; 
-  let toFormatter;
-
-
 
   const setInput = (num) => {
     baseFormatter || setMoney();
     const val = baseFormatter.format(FilterNum(num, currencyInput));
-    console.log(val);
-    validBaseCurrency && baseFormatter && setCurrencyInput(val);
+    setSymbol(val.split(/\ ?[+-]?[0-9]{1,3}(?:,?[0-9])*(?:\.[0-9]{1,2})?/));
+    setCurrencyInput(num);
   }
 
   const setMoney = () => {
     baseFormatter = currencyFormatter(baseCurrency);
     setValidBaseCurrency(true);
 
-    toFormatter = currencyFormatter(toCurrency);
     setValidToCurrency(true);
     
     setRate(currencyList.rates[toCurrency]);
@@ -92,9 +89,11 @@ export default function Container(props) {
    * @param {DOM} dom element to be modified
    */
   const filterTyping = (dom) => {
-    let select = dom.value.match(/[aA-zZ]{0,3}/).toString().toUpperCase();
-    console.log(select);
-    setValidBaseCurrency(false);
+    let select = dom.value.length > 3 ? 
+
+    dom.value.substring(dom.value.length - 2).trim() :
+    dom.value.match(/[aA-zZ]{0,3}/).toString().toUpperCase();
+
     setCurrencySelectionByID(dom.id, select);
 
   }
@@ -106,19 +105,22 @@ export default function Container(props) {
    */
   const setCurrencySelectionByID = (id, currency) => {
     if (id.includes('baseCurrency')) {
+      const currencyValid = checkCurrency(currency, setValidBaseCurrency, updateBaseCurrency, setFilteredBaseCurrency); 
+
+      setValidBaseCurrency(currencyValid);
       
       setSelectBaseCurrency(currency.toUpperCase());
-
-      filterCurrencyList(currency, setFilteredBaseCurrency);
-
-      checkCurrency(currency, setValidBaseCurrency, updateBaseCurrency, setFilteredBaseCurrency);
-
+      
+      filterCurrencyList(currency.toUpperCase(), setFilteredBaseCurrency);
+      
+      
     } else if (id.includes('transferCurrency')) {
+      setValidToCurrency(checkCurrency(currency, setValidToCurrency, updateToCurrency, setFilteredToCurrency));
       setSelectToCurrency(currency.toUpperCase());
+      
+      console.log(currency, selectToCurrency);
+      filterCurrencyList(currency.toUpperCase(), setFilteredToCurrency);
 
-      filterCurrencyList(currency, setFilteredToCurrency);
-
-      checkCurrency(currency, setValidToCurrency, updateToCurrency, setFilteredToCurrency);
 
     }
   }
@@ -143,9 +145,11 @@ export default function Container(props) {
         setInput={setInput}
         toCurrency={toCurrency}
         rate={rate}
+        symbol={symbol}
         validBaseCurrency={validBaseCurrency}
         validToCurrency={validToCurrency}
       />
+      {/* TODO: Need to add tabbed container here that will choose between chart and table */}
       <CurrencyTable 
         currencyList={currencyList} 
         currencyInput={currencyInput} 

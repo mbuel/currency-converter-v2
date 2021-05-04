@@ -5,15 +5,15 @@
 .currency-list {
   background: rgb(20,33,31);
   width:100%;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
-  height: 280px;
+  height: 360px;
   color:white;
-  scrollbar-color: rgb(22, 161, 131) rgb(6, 10, 10) !important;
-  scrollbar-width: 10px !important;
+  /* scrollbar-color: rgb(22, 161, 131) rgb(6, 10, 10) !important; */
+  /* scrollbar-width: 10px !important; */
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
   height: 190px;
 }
@@ -22,15 +22,15 @@
   background: rgba(20,33,31,1);
 }
 
-/* Handle */
+/* Handle
 ::-webkit-scrollbar-thumb {
   background: rgb(22, 161, 131); 
 }thin
 
-/* Handle on hover */
+/* Handle on hover
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(30, 214, 174); 
-}
+} */
 
 .heading {
   font-size: 1.3em;
@@ -46,16 +46,16 @@
   margin-left: 100px;
   border-radius: 25px;
   border: 1px rgb(22, 161, 131) solid;
-  height: 350px;
+  height: 445px;
   width: 90%;
   z-index: -100;
   font-size: 1.3em;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 1200px) {
   .currency-table {
     position: fixed !important;
-    top: 560px !important;
+    top: 640px !important;
     margin-left: 40px !important;
     font-size: 1.0em;
   }

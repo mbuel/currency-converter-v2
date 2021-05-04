@@ -21,6 +21,7 @@ function InputDialog(props) {
     selectBaseCurrency,
     selectToCurrency,
     setInput,
+    symbol,
     toCurrency,
     validBaseCurrency,
     validToCurrency
@@ -42,20 +43,21 @@ function InputDialog(props) {
 
   return (
     <div className="converter">
-      <div className="pt-5 container-fluid">
+      <div className="pt-2 container-fluid">
         <div className="row">
-          <div className="col-12 col-lg-4">
+          <div className="col-12 col-xl-4">
             <div className="row">
-              <div className="col-6 col-lg-12">
-                <InputHeader padBottom="2" label="Input" />
+              <div className="col-6 col-xl-12">
+                <InputHeader padBottom="0" label="Input" />
                 <CurrencyInput 
                   handler={handler} 
+                  symbol={symbol}
                   value={currencyInput}
                 />
               </div>
               <hr />
 
-              <div className="col-6 col-lg-12">
+              <div className="col-6 col-xl-12">
               
                 <ConversionOutput 
                   rate={rate} 
@@ -67,8 +69,8 @@ function InputDialog(props) {
             </div>
           </div>
 
-          <div className="col-12 col-lg-4">
-            <InputHeader padBottom="0" label="From" />
+          <div className="col-12 col-xl-4">
+            <InputHeader padBottom="5" label="From" />
             <InputDropDown 
               handler={handler} 
               currencyListKeys={filteredBaseCurrency} 
@@ -77,8 +79,8 @@ function InputDialog(props) {
               currencySelector={currencySelector}
             />
           </div>
-          <div className="col-12 col-lg-4">
-            <InputHeader padBottom="0" label="To" />
+          <div className="col-12 col-xl-4">
+            <InputHeader padBottom="5" label="To" />
             <InputDropDown 
               handler={handler} 
               currencyListKeys={filteredToCurrency} 
