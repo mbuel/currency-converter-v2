@@ -1,0 +1,47 @@
+.tab-container.container-fluid {
+  position: absolute !important;
+  top: 395px !important;
+  margin-left: 126px !important;
+}
+
+.btn-primary {
+  width: 100px !important;
+  transition: all .2s ease-in-out;
+}
+.btn-primary.active {
+  background-color: darkseagreen !important;
+  color: black !important;
+  border: 2px rgb(22, 161, 131) solid !important;
+  transform:scale(1.1);
+  z-index: 10;
+}
+
+.btn-primary.inactive {
+  background-color: darkslategray !important;
+  color: white !important;
+  border: 1px rgb(22, 161, 131) dashed !important;
+}
+
+.btn-primary:hover {
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+
+@media only screen and (max-width: 960px) {
+  .tab-container.container-fluid {
+    top: 580px !important;
+    margin-left: 56px !important;
+    transform:scale(0.9);
+    font-size: 0.7em !important;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .tab-container.container-fluid {
+    top: 602px !important;
+    margin-left: 56px !important;
+    transform:scale(0.9);
+    font-size: 0.7em !important;
+  }
+}

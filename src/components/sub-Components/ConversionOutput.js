@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, {useState, useEffect, useRef} from 'react';
+// import axios from 'axios';
+import LoadData from '../../utils/LoadData';
 import '../../css/ConversionOutput.css';
 import currencyFormatter from '../../utils/currencyFormatter';
 import FilterNum from '../../utils/FilterNum';
-import getFlagIconByCountryCode from '../../utils/getFlagIconByCountryCode';
 
 
 
@@ -13,10 +13,9 @@ function ConversionOutput(props) {
   const [baseCurrencyLabel, setBaseCurrencyLabel] = useState('');
   const [toCurrencyLabel, setToCurrencyLabel] = useState('');
   const [currencyOutput, setCurrencyOutput] = useState(undefined);
+  const [toFormatter, setToFormatter] = useState();
   
   const api = 'https://altexchangerateapi.herokuapp.com/currencies';
-  
-  let toFormatter = undefined;
   
   const setOutput = (num) => {
     let output = FilterNum(num, num) * rate;
@@ -24,26 +23,21 @@ function ConversionOutput(props) {
     setCurrencyOutput(toFormatter.format(output));
   }
 
-  
-  
+  const initLabels = (result) => {
+    setBaseCurrencyLabel(result[baseCurrency]);
+    setToCurrencyLabel(result[toCurrency])
+  }
+
   useEffect( () => {
-    console.log(toCurrency, currencyInput);
-    toFormatter = toCurrency && currencyFormatter(toCurrency);
+    setToFormatter(toCurrency && currencyFormatter(toCurrency));
 
-    toFormatter && setOutput(currencyInput);
-    console.log(currencyOutput);
+    LoadData(api, initLabels);
+  }, [baseCurrency, toCurrency]);
 
-    const loadData = async () => {
-      let result = await axios(
-        `${api}`
-      );
-
-      result = JSON.parse(result.request.responseText);
-      setBaseCurrencyLabel(result[baseCurrency]);
-      setToCurrencyLabel(result[toCurrency])
-    }
-    loadData();
-  }, [baseCurrency, toCurrency, currencyInput]);
+  useEffect( () => {
+    setOutput(currencyInput);
+  }, [currencyInput, rate, setToFormatter]);
+  
 
   // FIXED: needs fixed positioning
   // FIXED: move to corner more
@@ -54,6 +48,7 @@ function ConversionOutput(props) {
         <div>Input: <span>{currencyInput}</span></div>
         <div>Rate: <span>{rate}</span></div>
         <div>To: {toCurrency} - {toCurrencyLabel}</div>
+        {/* BUG: This is not correctly displaying values */}
         <div>Conversion: <span>{currencyOutput}</span></div>
 
       </div>

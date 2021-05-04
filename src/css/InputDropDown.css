@@ -15,7 +15,7 @@
   scrollbar-color: rgb(22, 161, 131) rgb(6, 10, 10) !important;
   scrollbar-width: 10px !important;
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
   height: 190px;
 }
@@ -24,15 +24,15 @@
   background: rgba(20,33,31,1);
 }
 
-/* Handle */
+/* Handle
 ::-webkit-scrollbar-thumb {
   background: rgb(22, 161, 131); 
 }thin
 
-/* Handle on hover */
+/* Handle on hover
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(30, 214, 174); 
-}
+} */
 
 
 .dropdown-menu  {
