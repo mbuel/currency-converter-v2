@@ -27,14 +27,17 @@ function ConversionOutput(props) {
     setBaseCurrencyLabel(result[baseCurrency]);
     setToCurrencyLabel(result[toCurrency])
   }
-  
+
   useEffect( () => {
     setToFormatter(toCurrency && currencyFormatter(toCurrency));
 
-    toFormatter && setOutput(currencyInput);
-
     LoadData(api, initLabels);
-  }, [baseCurrency, toCurrency, currencyInput]);
+  }, [baseCurrency, toCurrency]);
+
+  useEffect( () => {
+    setOutput(currencyInput);
+  }, [currencyInput, rate, setToFormatter]);
+  
 
   // FIXED: needs fixed positioning
   // FIXED: move to corner more

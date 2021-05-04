@@ -1,7 +1,7 @@
 .symbol {
-  position: relative;
-  top: 6px;
-  left: -8px;
+  position: absolute;
+  top: 36px;
+  left: 166px;
   padding-left: 8px;
   padding-right: 3px;
   border-radius: 25px 0px 0px 25px !important;
