@@ -4,16 +4,19 @@ import LoadData from '../../utils/LoadData';
 import '../../css/ConversionOutput.css';
 import currencyFormatter from '../../utils/currencyFormatter';
 import FilterNum from '../../utils/FilterNum';
+import FontAwesomeIcon from '../../utils/getFontIcon';
 
 
 
 function ConversionOutput(props) {
   const {baseCurrency, toCurrency, rate, currencyInput} = props;
 
-  const [baseCurrencyLabel, setBaseCurrencyLabel] = useState('');
-  const [toCurrencyLabel, setToCurrencyLabel] = useState('');
+  const [baseCurrencyLabel, setBaseCurrencyLabel] = useState(undefined);
+  const [toCurrencyLabel, setToCurrencyLabel] = useState(undefined);
+  const [fromCurrency, setFromCurrency] = useState(undefined);
   const [currencyOutput, setCurrencyOutput] = useState(undefined);
-  const [toFormatter, setToFormatter] = useState();
+  const [toFormatter, setToFormatter] = useState(undefined);
+  const [fromFormatter, setFromFormatter] = useState(undefined);
   
   const api = 'https://altexchangerateapi.herokuapp.com/currencies';
   
@@ -33,29 +36,39 @@ function ConversionOutput(props) {
   }
 
   useEffect( () => {
-    setFormatter(toCurrency);
-
-    LoadData(api, initLabels);
-  }, [baseCurrency, toCurrency]);
+    if (currencyInput && toCurrency && baseCurrency) {
+      setToFormatter(currencyFormatter(toCurrency));
+      setFromFormatter(currencyFormatter(baseCurrency))
+      LoadData(api, initLabels);
+    }
+  }, [baseCurrency, toCurrency, currencyInput]);
 
   useEffect( () => {
-    setTimeout(() => {
+    if (toFormatter) 
       setOutput(currencyInput);
-    }, 250);
-  }, [currencyInput, rate, setToFormatter]);
+
+    if (fromFormatter)
+      setFromCurrency(fromFormatter.format(currencyInput));
+      
+  }, [currencyInput, rate, toFormatter]);
+
   
 
   // FIXED: needs fixed positioning
   // FIXED: move to corner more
   return (
     <>
-      <div className="converted-output">
-        <h2>From: {baseCurrency} - {baseCurrencyLabel}</h2>
-        <div>Input: <span>{currencyInput}</span></div>
-        <div>Rate: <span>{rate}</span></div>
-        <div>To: {toCurrency} - {toCurrencyLabel}</div>
-        {/* BUG: This is not correctly displaying values */}
-        <div>Conversion: <span>{currencyOutput}</span></div>
+      <div className="pl-5 converted-output text-left inline-flex" >
+        <br />
+        <span className="font-weight-bold">From:</span><span> {baseCurrency} - {baseCurrencyLabel}</span>
+        <br />
+        <span className="font-weight-bold">Input:</span> <span>{fromCurrency}</span>
+        <br />
+        <span className="font-weight-bold">Rate:</span> <span>{rate}</span>
+        <br />
+        <span className="font-weight-bold">To:</span><span> {toCurrency} - {toCurrencyLabel}</span>
+        <br />
+        <span className="font-weight-bold">Conversion:</span> <span>{currencyOutput}</span>
 
       </div>
     </>

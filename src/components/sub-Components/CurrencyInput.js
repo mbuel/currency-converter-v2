@@ -9,9 +9,9 @@ export default function CurrencyInput(props) {
     <React.Fragment>
       {/* DONE: need state variable to track value and propagate changes to rest of page */}
       {/* TODO: fix this to have similar layout to AA topic */}
-        <span className="symbol">
+        <div className="symbol">
           {symbol}
-        </span>
+        </div>
         <input 
           type="text"
           placeholder="0.00" 
