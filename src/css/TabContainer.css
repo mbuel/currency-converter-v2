@@ -28,7 +28,7 @@
 }
 
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 1200px) {
   .tab-container.container-fluid {
     top: 580px !important;
     margin-left: 56px !important;

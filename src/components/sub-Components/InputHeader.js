@@ -5,7 +5,7 @@ export default function InputHeader(props) {
   return (
     <React.Fragment>
       <div className="row CurrencySelection">
-        <div className={`col-12 pb-${padBottom}`}>
+        <div className={`col-12 pb-xl-${padBottom}`}>
           <h2>{label}</h2> 
         </div>
       </div>

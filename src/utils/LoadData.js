@@ -8,8 +8,9 @@ import axios from 'axios';
  * @throws {error} if there is a problem this will throw an error.
  */
 export default async function LoadData(api, callback) {
+  let result;
   try {
-    let result = await axios(
+    result = await axios(
       `${api}`
     );
     result = JSON.parse(result.request.responseText);
@@ -17,6 +18,9 @@ export default async function LoadData(api, callback) {
     callback(result);
 
   } catch(err) {
+    console.error(`Data: ${result}
+    API: ${api}
+    CALLBACK: ${callback}`)
     throw new Error('Unable to retrieve data from endpoint.');
   }
 
