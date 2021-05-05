@@ -151,8 +151,10 @@ export default function Container(props) {
       />
       {/* TODO: Need to add tabbed container here that will choose between chart and table */}
       <CurrencyTable 
+        baseCurrency={baseCurrency}
         currencyList={currencyList} 
         currencyInput={currencyInput} 
+        toCurrency={toCurrency}
       />
     </React.Fragment>
   )
