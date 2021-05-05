@@ -7,9 +7,11 @@ import '../css/CurrencyTable.css';
 import TabContainer from './sub-Components/TabContainer';
 import LoadingInput from './LoadingInput';
 import { render } from '@testing-library/react';
+import RenderChart from './sub-Components/RenderChart';
 
 function CurrencyTable(props) {
-  const { currencyList, currencyInput } = props;
+  const { currencyList, currencyInput, baseCurrency, toCurrency } = props;
+
   const [currentTab, setCurrentTab] = useState('CHART');
 
   const setTab = (tab) => {
@@ -30,8 +32,8 @@ function CurrencyTable(props) {
   if (currentTab === 'GRAPH') {
     content = (
       <React.Fragment>
-        <div>
-          graph will go here.
+        <div className="chart">
+          <RenderChart baseCurrency={baseCurrency} toCurrency={toCurrency} />
         </div>
       </React.Fragment>
     )

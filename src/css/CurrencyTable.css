@@ -9,8 +9,13 @@
   overflow-x: hidden;
   height: 360px;
   color:white;
-  /* scrollbar-color: rgb(22, 161, 131) rgb(6, 10, 10) !important; */
-  /* scrollbar-width: 10px !important; */
+  scrollbar-color: rgb(22, 161, 131) rgb(6, 10, 10) !important;
+  scrollbar-width: 10px !important;
+}
+
+.chart {
+  height: 430px !important;
+  z-index: 20;
 }
 
 /* ::-webkit-scrollbar {
