@@ -7,4 +7,5 @@
   transform: scale(1.1);
   color:lightseagreen;
   text-decoration: underline;
+  z-index:1000;
 }

@@ -1,30 +1,7 @@
 import React, { createRef, useEffect, useState } from 'react';
-import {
-  Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip
-} from 'chart.js';
+
+import { Line } from 'react-chartjs-2';
+
 
 import LoadData from '../../utils/LoadData';
 
@@ -33,38 +10,33 @@ export default function RenderChart(props) {
 
   const [api, setApi] = useState();
   const [chartRawData, setChartRawData] = useState();
-  const [chartLabels, setChartLabels] = useState();
-  const [chartData, setChartData] = useState();
-  const [chartLabel, setChartLabel] = useState();
-  const [chart, setChart] = useState();
+  const [labels, setLabels] = useState();
+  const [data, setData] = useState();
+  const [label, setLabel] = useState();
+  // const [data, setData] = useState();
+  // const [options, setOptions] = useState();
+  let chartDisplay = (<p>NO</p>)
 
-  Chart.register(
-    ArcElement,
-    LineElement,
-    BarElement,
-    PointElement,
-    BarController,
-    BubbleController,
-    DoughnutController,
-    LineController,
-    PieController,
-    PolarAreaController,
-    RadarController,
-    ScatterController,
-    CategoryScale,
-    LinearScale,
-    LogarithmicScale,
-    RadialLinearScale,
-    TimeScale,
-    TimeSeriesScale,
-    Decimation,
-    Filler,
-    Legend,
-    Title,
-    Tooltip
-  );
+  const lineChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    tooltips: {
+      enabled: true
+    },
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 10
+          }
+        }
+      ]
+    }
+  }
 
-  let chartRef = React.createRef();
+
+  // let chartRef = React.createRef();
 
   /**
    * sets api if base and to currencies are not empty
@@ -91,47 +63,77 @@ export default function RenderChart(props) {
    */
   useEffect( () => {
     if(chartRawData) {
-      setChartLabels(Object.keys(chartRawData.rates));
-      setChartData(Object.values(chartRawData.rates).map(rate => rate[toCurrency]));
-      setChartLabel(`${baseCurrency}/${toCurrency}`);
+      setLabels(Object.keys(chartRawData.rates));
+      // const dates = Object.keys(chartRawData.rates);
+      const vals = Object.values(chartRawData.rates).map(rate => rate[toCurrency]);
+      // let data = [];
+      // for(let i = 0; i < vals.length; i++) {
+      //   data.push([dates[i], vals[i]]);
+      // }
+      setData(vals);
+      setLabel(`${baseCurrency}/${toCurrency}`);
     }
   }, [chartRawData]);
 
   /**
    * creates chart data
    */
-  useEffect( () => {
+  // useEffect( () => {
 
-    if(!chartLabels || !chartData || !chartLabel) return; // Return early if no valid data
+  //   if(!labels || !data || !label) return; // Return early if no valid data
 
-    chartRef = chartRef.current.getContext("2d");
-    if (chart !== "undefined") {
-      setChart(undefined);
-    }
 
-    setChart(new Chart(chartRef.current.getContext("2d"), {
-      type: 'line',
-      data: {
-        chartLabels,
+
+
+  //   setOptions({options: {responsive:true}});
+      
+  // }, [labels, data, label])
+  
+  const getData = canvas => {
+    const ctx = canvas.getContext("2d");
+    const gradient = ctx.createLinearGradient(0, 0, 100, 0);
+    return {
+      backgroundColor: gradient,
+      labels,
         datasets: [
           {
-            label: chartLabel,
-            chartData,
+            label,
+            data,
+            borderWidth: 3,
             fill: false,
-            tension: 0,
+            borderColor: "green"
           }
         ]
-      },
-      options: {
-        responsive: true,
-      }
-      })
-    );
-  }, [chartLabels, chartData, chartLabel])
+    };
+  };
 
+  const data2 = canvas => {
+    const ctx = canvas.getContext("2d");
+    const gradient = ctx.createLinearGradient(0, 0, 100, 0);
+    return {
+      backgroundColor: gradient,
+      labels,
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 3,
+          fill: false,
+          borderColor: "green"
+        }
+      ]
+    };
+  };
+  
+  // BUG: was rendering then stopped? may need to start over
+  if (data && labels && label) {
+    chartDisplay = <Line data={getData}  options={lineChartOptions} />;
+  }
+  
+  console.log(data);
   return (
-    <div>
-      <canvas ref={chartRef} />
-    </div>
+    <React.Fragment>
+      {chartDisplay}
+    </React.Fragment>
   )
 }
