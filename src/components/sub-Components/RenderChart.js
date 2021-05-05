@@ -1,7 +1,6 @@
-import React, { createRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Line } from 'react-chartjs-2';
-
 
 import LoadData from '../../utils/LoadData';
 
@@ -13,8 +12,8 @@ export default function RenderChart(props) {
   const [labels, setLabels] = useState();
   const [data, setData] = useState();
   const [label, setLabel] = useState();
-  // const [data, setData] = useState();
-  // const [options, setOptions] = useState();
+
+
   let chartDisplay = (<p>NO</p>)
 
   const lineChartOptions = {
@@ -76,19 +75,10 @@ export default function RenderChart(props) {
   }, [chartRawData]);
 
   /**
-   * creates chart data
+   * getData returns canvas dataset to display
+   * @param {canvas} canvas 
+   * @returns 
    */
-  // useEffect( () => {
-
-  //   if(!labels || !data || !label) return; // Return early if no valid data
-
-
-
-
-  //   setOptions({options: {responsive:true}});
-      
-  // }, [labels, data, label])
-  
   const getData = canvas => {
     const ctx = canvas.getContext("2d");
     const gradient = ctx.createLinearGradient(0, 0, 100, 0);
@@ -106,26 +96,7 @@ export default function RenderChart(props) {
         ]
     };
   };
-
-  const data2 = canvas => {
-    const ctx = canvas.getContext("2d");
-    const gradient = ctx.createLinearGradient(0, 0, 100, 0);
-    return {
-      backgroundColor: gradient,
-      labels,
-      datasets: [
-        {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 3,
-          fill: false,
-          borderColor: "green"
-        }
-      ]
-    };
-  };
   
-  // BUG: was rendering then stopped? may need to start over
   if (data && labels && label) {
     chartDisplay = <Line data={getData}  options={lineChartOptions} />;
   }
