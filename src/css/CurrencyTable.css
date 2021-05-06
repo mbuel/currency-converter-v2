@@ -46,22 +46,31 @@
 
 .currency-table {
   padding: 15px;
-  position: fixed !important;
-  top: 460px !important;
+  position: relative !important;
+  top: 135px !important;
   margin-left: 100px;
   border-radius: 25px;
   border: 1px rgb(22, 161, 131) solid;
-  height: 445px;
+  height: 430px;
   width: 90%;
-  z-index: -100;
+  z-index: 100;
   font-size: 1.3em;
 }
 
+.clear-fix {
+  height: 50px;
+}
+
 @media only screen and (max-width: 1200px) {
+  .currency-list { 
+    height: 330px;
+    margin-bottom: 30px;  
+  }
   .currency-table {
-    position: fixed !important;
-    top: 640px !important;
-    margin-left: 40px !important;
+    position: relative !important;
+    height: 390px !important;
+    margin-bottom: 50px !important;
+    margin-left: 14px !important;
     font-size: 1.0em;
   }
 }

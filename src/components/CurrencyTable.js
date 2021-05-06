@@ -45,6 +45,10 @@ function CurrencyTable(props) {
         <TabContainer toggleTab={setTab} />
         <div className='currency-table container-fluid'>
           {content}
+          <div className="clear-fix row">
+            <div className="col-12"></div>
+
+          </div>
         </div>
       </React.Fragment>
   )

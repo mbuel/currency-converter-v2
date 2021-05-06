@@ -28,14 +28,6 @@ function App() {
 
   }
   
-  // const loadData = async () => {
-  //   let result = await axios(
-  //     `${api}?from=${base}`
-  //   );
-
-  //   result = JSON.parse(result.request.responseText);
-  // }
-
   useEffect( () => {
     LoadData(`${api}?from=${base}`, init);
   }, [base]);
@@ -54,7 +46,6 @@ function App() {
 
   if (!currencyList) return <LoadingInput />
 
-  // TODO: need to adjust output to be mobile friendly
   return (
     <div className="App">
       <Header application={applicationName} links={'list-object to be populated'} />
@@ -65,6 +56,7 @@ function App() {
         updateBaseCurrency={updateBaseCurrency}
         updateToCurrency={updateToCurrency}
       />
+
       <Footer />
     </div>
   );

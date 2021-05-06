@@ -1,6 +1,6 @@
 .tab-container.container-fluid {
   position: absolute !important;
-  top: 395px !important;
+  top: 380px !important;
   margin-left: 126px !important;
   z-index: -10;
 }
@@ -31,7 +31,7 @@
 
 @media only screen and (max-width: 1200px) {
   .tab-container.container-fluid {
-    top: 580px !important;
+    top: 550px !important;
     margin-left: 56px !important;
     transform:scale(0.9);
     font-size: 0.7em !important;
@@ -40,7 +40,7 @@
 
 @media only screen and (max-width: 760px) {
   .tab-container.container-fluid {
-    top: 602px !important;
+    top: 575px !important;
     margin-left: 56px !important;
     transform:scale(0.9);
     font-size: 0.7em !important;

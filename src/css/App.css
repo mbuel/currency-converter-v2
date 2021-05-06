@@ -11,7 +11,9 @@ a {
 }
 
 .App {
+  /* position:fixed; */
   text-align: center;
+  z-index: -100;
 }
 
 .App-link {

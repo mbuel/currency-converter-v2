@@ -1,7 +1,7 @@
 .converter {
-  position: fixed;
+  position: relative;
   margin-left: 100px !important;
-  top: 70px;
+  top: 60px;
   height: 310px;
   width: 90%;
   border-radius: 25px;
@@ -37,8 +37,8 @@ input {
 
 @media only screen and (max-width: 1200px) {
   .converter {
-    position: fixed;
-    margin-left: 40px !important;
+    position: relative !important;
+    margin-left: 10px !important;
     top: 60px !important;
     height: 480px !important;
     width: 90% !important;
